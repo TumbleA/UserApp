@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import Cafe from "../components/Cafe";
-import Navigation from "../navigations";
 import Button from "./../components/Button";
 import { theme } from "./../theme";
 
@@ -10,12 +9,14 @@ const cafes = [
   { id: 2, name: "학생회관 카페",openingHours:'9:00~18:00',tumblers:'4개' },
   { id: 3, name: "다산 카페",openingHours:'9:00~18:00' ,tumblers:'4개'},
   { id: 4, name: "다산 카페",openingHours:'9:00~18:00' ,tumblers:'4개'},
+  { id: 5, name: "다산 카페",openingHours:'9:00~18:00' ,tumblers:'4개'},
 ];
 
 const Home = ({ navigation }) => {
   return (
     <View style={page.Container}>
-      <View style={page.List}>
+      
+      <ScrollView style={page.List}>
         {cafes.map((cafe) => (
           <Cafe
             key={cafe.id}
@@ -25,7 +26,7 @@ const Home = ({ navigation }) => {
             onPress={() => navigation.navigate("CafeInfo")}
           ></Cafe>
         ))}
-      </View>
+      </ScrollView>
       <View style={page.Button}>
         <Button title="대여하기" onPress={() => navigation.navigate("Scan")} />
       </View>
@@ -41,12 +42,14 @@ const page = StyleSheet.create({
     backgroundColor: theme.background,
   },
   List: {
+    marginTop:30,
     width: "80%",
-    flex: 6,
+    flex : 1,
+    
   },
   Button: {
-    width: "80%",
-    flex: 1,
+    width: "70%",
+    flex: 0.15,
   },
 });
 export default Home;
