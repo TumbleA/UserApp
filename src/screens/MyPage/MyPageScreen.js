@@ -1,8 +1,8 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Text, Pressable } from "@react-native-material/core";
-import { theme } from "../theme";
-import ProfileList from "../components/ProfileList";
+import { Text } from "@react-native-material/core";
+import { theme } from "../../theme";
+import ProfileList from "../../components/ProfileList";
 
 const menuList = [
   { id: 1, name: "결제수단", page: "Payment" },
@@ -14,7 +14,6 @@ const menuList = [
 const MyPage = ({ navigation }) => {
   return (
     <View style={page.Container}>
-
       <View style={page.TextContainer}>
         <Text style={{ fontSize: 35, fontWeight: "300" }}>김아주</Text>
         <Text style={{ marginLeft: 4 }} variant="body1">
@@ -43,19 +42,16 @@ const page = StyleSheet.create({
   },
   TextContainer: {
     marginTop: 70,
-    marginRight:20,
+    marginRight: 20,
     width: "80%",
     flex: 1,
   },
   ListContainer: {
     marginTop: 10,
-    marginRight:5,
+    marginRight: 5,
     marginBottom: 100,
     width: "90%",
     flex: 2,
-  },
-  List: {
-    flexDirection: "row",
   },
 });
 

@@ -2,9 +2,8 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MainStack from "./MainStack";
 import ListStack from "./ListStack";
-import MypageStack from "./MypageStack";
-import { Feather, Ionicons } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import MyPageStack from "./MyPageStack";
+import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { theme } from "./../theme";
 
 const Tab = createBottomTabNavigator();
@@ -43,8 +42,8 @@ const MainTab = () => {
             <Feather name="user" size={24} color={color} />
           ),
         }}
-        name="MypageStack"
-        component={MypageStack}
+        name="MyPageStack"
+        component={MyPageStack}
       />
     </Tab.Navigator>
   );

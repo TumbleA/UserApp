@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import Button from "./../components/Button";
-import Input from "../components/Input";
-import { theme } from "./../theme";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import { theme } from "../../theme";
 
 Button;
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
   return (
     <View style={styles.Container}>
       <Text>Login Screen</Text>

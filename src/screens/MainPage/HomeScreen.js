@@ -1,8 +1,8 @@
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import Cafe from "../components/Cafe";
-import Button from "./../components/Button";
-import { theme } from "./../theme";
+import Cafe from './../../components/Cafe';
+import Button from './../../components/Button';
+import { theme } from './../../theme';
 
 const cafes = [
   { id: 1, name: "중도 카페" , openingHours:'9:00~18:00' ,tumblers:'4개'},

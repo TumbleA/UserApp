@@ -3,7 +3,6 @@ import React from "react";
 import List from './../screens/List';
 import CafeInfo from './../screens/CafeInfo';
 
-
 const Stack = createStackNavigator();
 
 const ListStack = () => {
