@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -10,8 +10,14 @@ import Input from "../../components/Input";
 import { theme } from "../../theme";
 
 const LoginScreen = ({ navigation }) => {
+  const [disabled, setDisabled] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    setDisabled(!(email && password && !errorMsg));
+  }, [email, password, errorMsg]);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -19,14 +25,15 @@ const LoginScreen = ({ navigation }) => {
         <View style={page.Input}>
           <Input
             label="이메일"
+            value={email}
             placeholder=" abc123@ajou.ac.kr"
             onChangeText={(text) => setEmail(text)}
             onSubmitEditing={() => {}}
             returnKeyType="next"
-            maxLength={6}
           />
           <Input
             label="비밀번호"
+            value={password}
             placeholder=" password"
             onChangeText={(text) => setPassword(text)}
             onSubmitEditing={() => {}}
@@ -58,12 +65,10 @@ const page = StyleSheet.create({
     backgroundColor: theme.background,
   },
   Input: {
-    // flex: 5,
     width: "90%",
     marginTop: 10,
   },
   Button: {
-    // flex: 1,
     marginTop: 50,
     width: "80%",
   },

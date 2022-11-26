@@ -1,21 +1,19 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import Scan from "../screens/MainPage/Scan";
-import CafeInfo from "./../screens/CafeInfo";
-import Home from "./../screens/MainPage/HomeScreen";
+import MainTab from "./MainTab";
 
 const Stack = createStackNavigator();
 
 const MainStack = () => {
   return (
     <Stack.Navigator
+      initialRouteName="Main"
       screenOptions={{
         headerTitleAlign: "center",
+        headerShown:false,
       }}
     >
-      <Stack.Screen name="TumblA" component={Home} />
-      <Stack.Screen name="Scan" component={Scan} />
-      <Stack.Screen name="CafeInfo" component={CafeInfo} />
+      <Stack.Screen name="main" component={MainTab} />
     </Stack.Navigator>
   );
 };

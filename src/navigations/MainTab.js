@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import MainStack from "./MainStack";
+import MainPageStack from "./MainPageStack";
 import ListStack from "./ListStack";
 import MyPageStack from "./MyPageStack";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -25,8 +25,8 @@ const MainTab = () => {
             <MaterialCommunityIcons name="cup" size={24} color={color} />
           ),
         }}
-        name="MainStack"
-        component={MainStack}
+        name="MainPageStack"
+        component={MainPageStack}
       />
       <Tab.Screen
         options={{

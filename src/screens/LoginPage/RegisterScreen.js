@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { theme } from "../../theme";
 
-const RegisterScreen = () => {
+const RegisterScreen = ({navigation}) => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,7 +55,7 @@ const RegisterScreen = () => {
         <View style={page.Button}>
           <Button
             title="가입하기"
-            onPress={() => navigation.navigate("Register")}
+            onPress={() => navigation.navigate("Login")}
           ></Button>
         </View>
       </View>
