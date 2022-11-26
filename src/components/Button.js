@@ -6,7 +6,7 @@ import { StyleSheet } from "react-native";
 const Button = ({ title, onPress }) => {
   return (
     <>
-      <Pressable style={styles.Container} onPress={onPress}>
+      <Pressable style={styles.Container} onPress={onPress}  >
         <Text style={styles.Title}>{title}</Text>
       </Pressable>
     </>

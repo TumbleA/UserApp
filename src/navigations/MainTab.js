@@ -15,6 +15,7 @@ const MainTab = () => {
         headerShown: false,
         activeTintColor: theme.active,
         inactiveTintColor: theme.inActive,
+        tabBarHideOnKeyboard:true,
       }}
       tabBarOptions={{ showLabel: false }}
     >

@@ -1,21 +1,20 @@
 import React from "react";
 import { ListItem } from "@react-native-material/core";
 import { StyleSheet } from "react-native";
-import { theme } from "./../theme";
+import { theme } from "../theme";
 import { View } from "react-native";
 
-const PaymentList = ({ name, cardNum }) => (
+const HistoryListItem = ({ cafeName, rentalDate, returnDate}) => (
   <View style={styles.ListItem}>
-    <ListItem title={name} secondaryText={cardNum} />
+    <ListItem title={cafeName} secondaryText={`${rentalDate} ~ ${returnDate}`} />
   </View>
 );
 
 const styles = StyleSheet.create({
   ListItem: {
     marginTop: 20,
-    borderWidth: 1,
     borderRadius: 10,
     borderColor: theme.black,
   },
 });
-export default PaymentList;
+export default HistoryListItem;

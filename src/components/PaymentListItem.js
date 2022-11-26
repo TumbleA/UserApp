@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 import { theme } from "../theme";
 import { View } from "react-native";
 
-const RentalHistoryList = ({ name, cardNum }) => (
+const PaymentListItem = ({ name, cardNum }) => (
   <View style={styles.ListItem}>
     <ListItem title={name} secondaryText={cardNum} />
   </View>
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
     borderColor: theme.black,
   },
 });
-export default RentalHistoryList;
+export default PaymentListItem;

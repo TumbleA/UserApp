@@ -2,9 +2,9 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import MyPage from "../screens/MyPage/MyPageScreen";
-import Payment from "../screens/MyPage/Payment";
+import Payment from "../screens/MyPage/PaymentScreen";
 import AddPayment from "../screens/MyPage/AddPaymentScreen";
-import Report from "../screens/MyPage/Report";
+import Report from "../screens/MyPage/ReportScreen";
 import History from "../screens/MyPage/HistoryScreen";
 
 const Stack = createStackNavigator();

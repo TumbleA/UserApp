@@ -3,53 +3,40 @@ import {
   View,
   StyleSheet,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
 } from "react-native";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { theme } from "../../theme";
 
-const AddPaymentScreen = ({ navigation }) => {
-  const [cardNum, setCardNum] = useState("");
-  const [validationDate, setValidtaionDate] = useState("");
-  const [birth, setBirth] = useState("");
-  const [cardPw, setCardPw] = useState("");
-
+const ReportScreen = () => {
+  const [title, setTitle] = useState("");
+  const [img, setImg] = useState("");
+  const [content, setContent] = useState("");
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={page.Container}>
         <View style={page.Input}>
           <Input
-            label="카드번호"
-            placeholder=" 1111 2222 3333 4444"
-            onChangeText={(text) => setCardNum(text)}
+            label="제목"
+            onChangeText={(text) => setTitle(text)}
             onSubmitEditing={() => {}}
             returnKeyType="next"
-            maxLength={19}
           />
           <Input
-            label="유효기간"
-            placeholder=" MM/YY"
-            onChangeText={(text) => setValidtaionDate(text)}
+            label="사진"
+            onChangeText={(text) => setImg(text)}
             onSubmitEditing={() => {}}
             returnKeyType="next"
-            maxLength={5}
           />
+
           <Input
-            label="생년월일"
-            placeholder=" YYMMDD"
-            onChangeText={(text) => setBirth(text)}
-            onSubmitEditing={() => {}}
-            returnKeyType="next"
-            maxLength={6}
-          />
-          <Input
-            label="비밀번호"
-            placeholder=" password"
-            onChangeText={(text) => setCardPw(text)}
+            style={page.isMultiline}
+            isMultiline
+            label="내용"
+            onChangeText={(text) => setContent(text)}
             onSubmitEditing={() => {}}
             returnKeyType="done"
-            isPassword
           />
         </View>
 
@@ -75,11 +62,13 @@ const page = StyleSheet.create({
     width: "90%",
     marginTop: 10,
   },
+  isMultiline: {
+    padding: 30,
+  },
   Button: {
     // flex: 1,
-    marginTop: 110,
+    marginTop: 150,
     width: "80%",
   },
 });
-
-export default AddPaymentScreen;
+export default ReportScreen;
