@@ -7,8 +7,8 @@ import AuthStack from './AuthStack';
 const Navigation = () => {
   return (
     <NavigationContainer>
-        <MainTab/>
-        {/* <AuthStack/> */}
+        {/* <MainTab/> */}
+        <AuthStack/>
     </NavigationContainer>
   );
 };
