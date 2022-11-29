@@ -28,7 +28,7 @@ const MainTab = () => {
         name="MainPageStack"
         component={MainPageStack}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="stats-chart" size={24} color={color} />
@@ -36,7 +36,7 @@ const MainTab = () => {
         }}
         name="ListStack"
         component={ListStack}
-      />
+      /> */}
       <Tab.Screen
         options={{
           tabBarIcon: ({ color, size }) => (

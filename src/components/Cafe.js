@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../theme";
 import { Pressable, Text } from "@react-native-material/core";
@@ -12,7 +12,7 @@ const Cafe = ({ name, openingHours, tumblers, onPress }) => {
       pressEffect="highlight"
     >
       <View style={styles.Icon}>
-        {/* <Ionicons name="cafe" size={40} color="black" /> */}
+        {/* <Ionicons name="cafe" size={50} color="blue" /> */}
       </View>
       <View style={styles.Contents}>
         <Text variant="body1">{name}</Text>
@@ -31,14 +31,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: theme.white,
     marginTop: 13,
-    height: 70,
+    height: 90,
     borderBottomWidth: 0.5,
     borderBottomColor: theme.grey,
     paddingBottom: 10,
     borderRadius: 10,
   },
   Icon: {
-    flex: 0.8,
+    flex: 1.3,
     justifyContent: "center",
   },
   Contents: {

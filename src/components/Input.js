@@ -44,7 +44,7 @@ const Input = ({
 
 const styles = StyleSheet.create({
   Container: {
-    marginTop: 20,
+    marginTop: 5,
   },
   Label: {
     fontSize: 14,

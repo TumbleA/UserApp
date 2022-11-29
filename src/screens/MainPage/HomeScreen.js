@@ -21,7 +21,6 @@ const Home = ({ navigation }) => {
           <Cafe
             key={cafe.id}
             name={cafe.name}
-            openingHours={cafe.openingHours}
             tumblers={cafe.tumblers}
             onPress={() => navigation.navigate("CafeInfo")}
           ></Cafe>
@@ -43,7 +42,7 @@ const page = StyleSheet.create({
   },
   List: {
     marginTop:30,
-    width: "80%",
+    width: "90%",
     flex : 1,
     
   },

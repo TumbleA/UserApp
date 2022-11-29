@@ -8,9 +8,9 @@ import MainStack from './MainStack';
 const Navigation = () => {
   return (
     <NavigationContainer>
-        {/* <AuthStack/> */}
+        <AuthStack/>
         {/* <Spinner/> */}
-        <MainStack/>
+        {/* <MainStack/> */}
     </NavigationContainer>
   );
 };

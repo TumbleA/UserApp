@@ -3,12 +3,13 @@ import { theme } from "./../theme";
 import { Pressable, Text } from "react-native";
 import { StyleSheet } from "react-native";
 
-const Button = ({ title, onPress, isUnfilled }) => {
+const Button = ({ title, onPress, isUnfilled, disabled }) => {
   return (
     <>
       <Pressable
         style={isUnfilled ? styles.Container : styles.Container_isFilled}
         onPress={onPress}
+        disabled={disabled}
       >
         <Text style={isUnfilled ? styles.Title : styles.Title_isFilled}>
           {title}

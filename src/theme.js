@@ -10,6 +10,7 @@ export const theme = {
   blue: "#3679fe",
   grey: "#d5d5d5",
   black: "#000000",
+  red : "#d00000",
   active : colors.black,
   inActive : colors.grey,
   background: colors.white,

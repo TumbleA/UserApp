@@ -14,12 +14,13 @@ const PaymentScreen = ({ navigation }) => {
     <View style={page.Container}>
       <View style={page.ListContainer}>
         {payments.map((payment) => (
-          <PaymentList name={payment.name} cardNum={payment.cardNum} />
+          <PaymentList key={payment.id} name={payment.name} cardNum={payment.cardNum} />
         ))}
       </View>
 
       <View style={page.ButtonContainer}>
         <Button
+        
           title="추가하기"
           onPress={() => navigation.navigate("AddPayment")}
         />
