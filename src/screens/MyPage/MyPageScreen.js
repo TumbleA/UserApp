@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text } from "@react-native-material/core";
-import { theme } from "../../theme";
 import ProfileList from "../../components/ProfileList";
+import { theme } from "../../theme";
+import { UserContext } from "../../contexts/User";
 
 const menuList = [
   { id: 1, name: "결제수단", page: "Payment" },
@@ -12,6 +13,8 @@ const menuList = [
 ];
 
 const MyPage = ({ navigation }) => {
+  const { dispatch } = useContext(UserContext);
+
   return (
     <View style={page.Container}>
       <View style={page.TextContainer}>
@@ -25,7 +28,11 @@ const MyPage = ({ navigation }) => {
         {menuList.map((menu) => (
           <ProfileList
             name={menu.name}
-            onPress={() => navigation.navigate(`${menu.page}`)}
+            onPress={
+              menu.page === "Logout"
+                ? () => dispatch({})
+                : () => navigation.navigate(`${menu.page}`)
+            }
           />
         ))}
       </View>

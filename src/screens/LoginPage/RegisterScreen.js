@@ -99,7 +99,7 @@ const RegisterScreen = ({ navigation }) => {
         <View style={page.Input}>
           <Input
             label="이름"
-            placeholder=" "
+            placeholder="김아주"
             onChangeText={(text) => setUserName(text)}
             onSubmitEditing={() => {}}
             returnKeyType="next"

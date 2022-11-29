@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   View,
   StyleSheet,
@@ -6,13 +6,18 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
-import axios from "axios"
+import axios from "axios";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { theme } from "../../theme";
 import { Text } from "@react-native-material/core";
+import { ProgressContext } from "../../contexts/Progress";
+import { UserContext } from "../../contexts/User";
 
 const LoginScreen = ({ navigation }) => {
+  const { dispatch } = useContext(UserContext);
+  const { spinner } = useContext(ProgressContext);
+
   const [disabled, setDisabled] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,8 +35,8 @@ const LoginScreen = ({ navigation }) => {
       emailMsg = "이메일 형식이 유효하지 않아요.";
     }
     setEmailMsg(emailMsg);
-    if(password && password.length<8) {
-      passwordMsg = "비밀번호를 8자리 이상 입력해주세요."
+    if (password && password.length < 8) {
+      passwordMsg = "비밀번호를 8자리 이상 입력해주세요.";
     }
     setPasswordMsg(passwordMsg);
   }, [email, password]);
@@ -52,6 +57,7 @@ const LoginScreen = ({ navigation }) => {
     //   if(err)
     //   Alert.alert('로그인에 실패하였습니다.',err.message)
     // })
+    dispatch({email});
 
   };
   return (
@@ -112,7 +118,7 @@ const page = StyleSheet.create({
   },
   Input: {
     width: "90%",
-    marginTop: 30,
+    marginTop: 100,
   },
   Text: {
     alignItems: "flex-start",
@@ -121,7 +127,7 @@ const page = StyleSheet.create({
     marginTop: 3,
   },
   Button: {
-    marginTop: 50,
+    marginTop: 30,
     width: "80%",
   },
 });

@@ -7,7 +7,7 @@ const Button = ({ title, onPress, isUnfilled, disabled }) => {
   return (
     <>
       <Pressable
-        style={isUnfilled ? styles.Container : styles.Container_isFilled}
+        style={isUnfilled ? styles.Container :  disabled ? styles.Container_isFilled_disabled: styles.Container_isFilled }
         onPress={onPress}
         disabled={disabled}
       >
@@ -26,6 +26,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 15,
     marginTop: 10,
+  },
+  Container_isFilled_disabled: {
+    backgroundColor: theme.buttonBackground,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 15,
+    marginTop: 10,
+    opacity: 0.5,
   },
   Title_isFilled: {
     fontSize: 15,
