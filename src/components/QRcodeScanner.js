@@ -1,59 +1,52 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Alert,
-  Button,
-  Dimensions,
-  StyleSheet,
-  Vibration,
-  View,
-} from "react-native";
-import { Camera, CameraType } from "react-native-camera-kit";
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet, Button} from "react-native";
+import { BarCodeScanner } from "expo-barcode-scanner";
 
 const QRCodeScanner = () => {
-  const [scaned, setScaned] = useState(true);
-  const ref = useRef(null);
+  const [hasPermission, setHasPermission] = useState(null);
+  const [scanned, setScanned] = useState(false);
 
   useEffect(() => {
-    // 종료후 재시작을 했을때 초기화
-    setScaned(true);
+    const getBarCodeScannerPermissions = async () => {
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === "granted");
+    };
+
+    getBarCodeScannerPermissions();
   }, []);
 
-  const onBarCodeRead = (event) => {
-    if (!scaned) return;
-    setScaned(false);
-    Vibration.vibrate();
-    Alert.alert("QR Code", event.nativeEvent.codeStringValue, [
-      { text: "OK", onPress: () => setScaned(true) },
-    ]);
+  const handleBarCodeScanned = ({ type, data }) => {
+    setScanned(true);
+    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
+
+  if (hasPermission === null) {
+    return <Text>Requesting for camera permission</Text>;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
 
   return (
     <View style={styles.container}>
-      <Camera
-        style={styles.scanner}
-        ref={ref}
-        cameraType={CameraType.Back} // Front/Back(default)
-        zoomMode
-        focusMode
-        // Barcode Scanner Props
-        scanBarcode
-        showFrame={false}
-        laserColor="rgba(0, 0, 0, 0)"
-        frameColor="rgba(0, 0, 0, 0)"
-        surfaceColor="rgba(0, 0, 0, 0)"
-        onReadCode={onBarCodeRead}
+      <BarCodeScanner
+        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        style={StyleSheet.absoluteFillObject}
+        barCodeTypes ="qr"
       />
+      {scanned && (
+        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
-  },
-  scanner: { flex: 1 },
-});
-
+  container :{
+    flex : 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000',
+  }
+})
 export default QRCodeScanner;

@@ -46,12 +46,14 @@ const LoginScreen = ({ navigation }) => {
   }, [email, password, emailMsg, passwordMsg]);
 
   const onPressLoginButton = () => {
+    // spinner.start
     // axios.post("http://3.34.19.237:3000/user/signin",{
     //   "email": email,
     //   "password":password,
     // }).then((response)=>{
     //   //유저 확인
     //   console.log(response);
+        // spinner.stop
     //   navigation.navigate("Register");
     // }).catch((err)=>{
     //   if(err)

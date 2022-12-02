@@ -3,6 +3,7 @@ import React from "react";
 import Scan from "../screens/MainPage/Scan";
 import CafeInfo from "./../screens/CafeInfo";
 import Home from "./../screens/MainPage/HomeScreen";
+import { theme } from "./../theme";
 
 const Stack = createStackNavigator();
 
@@ -14,7 +15,20 @@ const MainPageStack = () => {
       }}
     >
       <Stack.Screen name="TumblA" component={Home} />
-      <Stack.Screen name="Scan" component={Scan} />
+      <Stack.Screen
+        name="Scan"
+        component={Scan}
+        options={{
+          headerTitleAlign:"left",
+          headerTintColor: theme.white,
+          headerTitleStyle :{fontWeight:"bold"},
+          headerStyle :{
+            backgroundColor: theme.black, 
+          },
+          headerTitle: "QR코드 스캔",
+  
+        }}
+      />
       <Stack.Screen name="CafeInfo" component={CafeInfo} />
     </Stack.Navigator>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { ScrollView, Text, StyleSheet } from "react-native";
 import { theme } from "./../../theme";
 import HistoryListItem from "./../../components/HistoryListItem";
 
@@ -20,7 +20,7 @@ const historyList = [
 
 const HistoryScreen = () => {
   return (
-    <View style={styles.Container}>
+    <ScrollView style={styles.Container}>
       {historyList.map((history) => (
         <HistoryListItem
           key={history.id}
@@ -29,7 +29,7 @@ const HistoryScreen = () => {
           returnDate={history.returnDate}
         />
       ))}
-    </View>
+    </ScrollView>
   );
 };
 

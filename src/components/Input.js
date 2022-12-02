@@ -25,7 +25,7 @@ const Input = ({
       <TextInput
         multiline={isMultiline}
         numberOfLines={isMultiline ? 4 : 1}
-        style={styles.TextInput}
+        style={isFocused?styles.TextInput_focused : styles.TextInput}
         value={value}
         onChangeText={onChangeText} //setText
         onSubmitEditing={onSubmitEditing} //submit
@@ -56,6 +56,13 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     padding: 7,
   },
+  TextInput_focused: {
+    fontSize: 16,
+    borderRadius: 4,
+    borderWidth: 1,
+    padding: 7,
+    borderColor: theme.blue,
+  }
 });
 
 export default Input;

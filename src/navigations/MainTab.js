@@ -1,10 +1,10 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MainPageStack from "./MainPageStack";
-import ListStack from "./ListStack";
 import MyPageStack from "./MyPageStack";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { theme } from "./../theme";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,28 +15,19 @@ const MainTab = () => {
         headerShown: false,
         activeTintColor: theme.active,
         inactiveTintColor: theme.inActive,
-        tabBarHideOnKeyboard:true,
+        tabBarHideOnKeyboard: true,
       }}
       tabBarOptions={{ showLabel: false }}
     >
       <Tab.Screen
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, route }) => (
             <MaterialCommunityIcons name="cup" size={24} color={color} />
           ),
         }}
         name="MainPageStack"
         component={MainPageStack}
       />
-      {/* <Tab.Screen
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="stats-chart" size={24} color={color} />
-          ),
-        }}
-        name="ListStack"
-        component={ListStack}
-      /> */}
       <Tab.Screen
         options={{
           tabBarIcon: ({ color, size }) => (

@@ -27,6 +27,7 @@ const MyPage = ({ navigation }) => {
       <View style={page.ListContainer}>
         {menuList.map((menu) => (
           <ProfileList
+            key={menu.id}
             name={menu.name}
             onPress={
               menu.page === "Logout"
