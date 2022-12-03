@@ -1,29 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import Cafe from "./../../components/Cafe";
 import Button from "./../../components/Button";
 import { theme } from "./../../theme";
 import { Text } from "@react-native-material/core";
+import { UserContext } from "../../contexts";
+import img from "../../../assets/cafe1.png"
+
 
 const cafes = [
-  { id: 1, name: "중도 카페", openingHours: "9:00~18:00", tumblers: "4개" },
-  { id: 2, name: "학생회관 카페", openingHours: "9:00~18:00", tumblers: "4개" },
-  { id: 3, name: "다산 카페", openingHours: "9:00~18:00", tumblers: "4개" },
-  { id: 4, name: "다산 카페", openingHours: "9:00~18:00", tumblers: "4개" },
+  { id: 1, name: "도서관 카페", openingHours: "9:00~18:00", tumblerCount: "4개", image: img },
+  { id: 2, name: "학생회관 카페", openingHours: "9:00~18:00", tumblerCount: "4개" , image: img},
+  { id: 3, name: "다산관 카페", openingHours: "9:00~18:00", tumblerCount: "4개" , image: img},
+  { id: 4, name: "할리스 아주대 병원", openingHours: "9:00~18:00", tumblerCount: "4개", image: img},
 ];
 
 const Home = ({ navigation }) => {
+  const { user } = useContext(UserContext);
   return (
     <View style={page.Container}>
       <View style={page.TitleBox} >
-        <Text variant="h6" style={page.Title}>카페 리스트</Text>
+        <Text variant="h6" style={page.Title}>{`${user.email} 님 대여 가능`}</Text>
       </View>
       <ScrollView style={page.List}>
         {cafes.map((cafe) => (
           <Cafe
             key={cafe.id}
             name={cafe.name}
-            tumblers={cafe.tumblers}
+            openingHours ={cafe.openingHours}
+            tumblerCount={cafe.tumblerCount}
+            img ={cafe.image}
             onPress={() => navigation.navigate("CafeInfo")}
           ></Cafe>
         ))}

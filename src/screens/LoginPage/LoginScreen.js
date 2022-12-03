@@ -46,18 +46,19 @@ const LoginScreen = ({ navigation }) => {
   }, [email, password, emailMsg, passwordMsg]);
 
   const onPressLoginButton = () => {
-    // spinner.start
+    // spinner.start();
     // axios.post("http://3.34.19.237:3000/user/signin",{
     //   "email": email,
     //   "password":password,
-    // }).then((response)=>{
+    // }).then((res)=>{
     //   //유저 확인
-    //   console.log(response);
-        // spinner.stop
-    //   navigation.navigate("Register");
+    //   spinner.stop();
+    //   dispatch({res.data.email});
+    //   // navigation.navigate("Register");
     // }).catch((err)=>{
+    //   spinner.stop();
     //   if(err)
-    //   Alert.alert('로그인에 실패하였습니다.',err.message)
+    //   Alert.alert('로그인 실패!','이메일이나 비밀번호가 일치하지 않습니다.')
     // })
     dispatch({email});
 

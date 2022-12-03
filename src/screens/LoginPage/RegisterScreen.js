@@ -1,16 +1,21 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import {
   View,
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from "react-native";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { theme } from "../../theme";
 import { Text } from "@react-native-material/core";
+import { ProgressContext } from "../../contexts/Progress";
+import axios from 'axios';
+
 
 const RegisterScreen = ({ navigation }) => {
+  const { spinner } = useContext(ProgressContext);
   const [disabled, setDisabled] = useState(true);
 
   const [userName, setUserName] = useState("");
@@ -79,19 +84,21 @@ const RegisterScreen = ({ navigation }) => {
   ]);
 
   const onPressRegisterButton = () => {
-    // axios.post("http://3.34.19.237:3000/user/signup",{
-    //   "email": email,
-    //   "password":password,
-    //   "username":userName
-    // }).then((response)=>{
-    //   //유저 확인
-    //   console.log(response);
-    //   navigation.navigate("Login");
-    // }).catch((err)=>{
-    //   if(err)
-    //   Alert.alert('중복된 이메일입니다.',err.message)
-    // })
-    navigation.navigate("Login");
+    spinner.start();
+    axios.post("http://3.34.19.237:3000/user/signup",{
+      "email": email,
+      "password":password,
+      "username":userName
+    }).then((res)=>{
+      //유저 확인
+      spinner.stop();
+      navigation.navigate("Login");
+    }).catch((err)=>{
+      spinner.stop();
+      if(err)
+      Alert.alert('회원가입 실패!','중복된 이메일입니다.')
+    })
+    // navigation.navigate("Login");
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
