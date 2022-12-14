@@ -85,20 +85,19 @@ const RegisterScreen = ({ navigation }) => {
 
   const onPressRegisterButton = () => {
     spinner.start();
-    axios.post("http://3.34.19.237:3000/user/signup",{
+    axios.post("http://3.34.19.237:3000/api/user/signup",{
       "email": email,
       "password":password,
       "username":userName
     }).then((res)=>{
-      //유저 확인
       spinner.stop();
+      Alert.alert('계정 생성 완료!','이제 로그인 하실 수 있습니다.')
       navigation.navigate("Login");
     }).catch((err)=>{
       spinner.stop();
       if(err)
       Alert.alert('회원가입 실패!','중복된 이메일입니다.')
     })
-    // navigation.navigate("Login");
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

@@ -14,13 +14,14 @@ const menuList = [
 
 const MyPage = ({ navigation }) => {
   const { dispatch } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <View style={page.Container}>
       <View style={page.TextContainer}>
-        <Text style={{ fontSize: 35, fontWeight: "300" }}>김아주</Text>
+        <Text style={{ fontSize: 35, fontWeight: "300" }}>test3</Text>
         <Text style={{ marginLeft: 4 }} variant="body1">
-          201820743
+          {user.email}
         </Text>
       </View>
 

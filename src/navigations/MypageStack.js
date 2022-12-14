@@ -1,6 +1,5 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-
 import MyPage from "../screens/MyPage/MyPageScreen";
 import Payment from "../screens/MyPage/PaymentScreen";
 import AddPayment from "../screens/MyPage/AddPaymentScreen";

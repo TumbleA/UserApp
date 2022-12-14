@@ -1,19 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   StyleSheet,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
 } from "react-native";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import axios from "axios";
 import { theme } from "../../theme";
+import { ProgressContext } from "../../contexts/Progress";
+import { UserContext } from "../../contexts";
 
 const AddPaymentScreen = ({ navigation }) => {
   const [cardNum, setCardNum] = useState("");
   const [validationDate, setValidtaionDate] = useState("");
   const [birth, setBirth] = useState("");
   const [cardPw, setCardPw] = useState("");
+  const { user } = useContext(UserContext);
+  const { spinner } = useContext(ProgressContext);
+
+  const onPressRegisterButton = () => {
+    spinner.start();
+    axios
+      .post("http://3.34.19.237:3000/api/payment/add", {
+        "email": user?.email,
+        "cardNum": cardNum,
+        "validationDate": validationDate,
+        "birth": birth,
+        "cardPw": cardPw
+      })
+      .then((res) => {
+        spinner.stop();
+        Alert.alert("카드 등록 완료",
+        "카드가 정상적으로 등록 되었습니다.");
+       () => navigation.navigate("Payment");
+      })
+      .catch((err) => {
+        spinner.stop();
+        Alert.alert("카드 등록 실패!",
+        "유효하지 않은 카드입니다.");
+      });
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -54,10 +82,7 @@ const AddPaymentScreen = ({ navigation }) => {
         </View>
 
         <View style={page.Button}>
-          <Button
-            title="등록하기"
-            onPress={() => navigation.navigate("Payment")}
-          ></Button>
+          <Button title="등록하기" onPress={onPressRegisterButton}></Button>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -71,12 +96,10 @@ const page = StyleSheet.create({
     backgroundColor: theme.background,
   },
   Input: {
-    // flex: 5,
     width: "90%",
     marginTop: 10,
   },
   Button: {
-    // flex: 1,
     marginTop: 110,
     width: "80%",
   },

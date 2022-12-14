@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   StyleSheet,
@@ -7,12 +7,35 @@ import {
 } from "react-native";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import axios from "axios";
 import { theme } from "../../theme";
+import { ProgressContext } from "../../contexts/Progress";
+import { UserContext } from "../../contexts";
 
 const ReportScreen = () => {
   const [title, setTitle] = useState("");
   const [img, setImg] = useState("");
   const [content, setContent] = useState("");
+  const { user } = useContext(UserContext);
+  const { spinner } = useContext(ProgressContext);
+
+  const onPressRegisterButton = () => {
+    axios
+      .post("http://3.34.19.237:3000/api/payment/add", {
+        "email":user?.email,
+        "title": title,
+        "img": img,
+        "content": content
+      })
+      .then((res) => {
+        spinner.stop();
+      })
+      .catch((err) => {
+        spinner.stop();
+        Alert.alert("등록 실패",
+        "다시 등록 해주세요.");
+      });
+  };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={page.Container}>
@@ -58,7 +81,6 @@ const page = StyleSheet.create({
     backgroundColor: theme.background,
   },
   Input: {
-    // flex: 5,
     width: "90%",
     marginTop: 10,
   },
@@ -66,7 +88,6 @@ const page = StyleSheet.create({
     padding: 30,
   },
   Button: {
-    // flex: 1,
     marginTop: 150,
     width: "80%",
   },

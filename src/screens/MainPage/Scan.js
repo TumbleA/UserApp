@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Alert } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import Button from "./../../components/Button";
 import axios from "axios";
@@ -19,22 +19,20 @@ const Scan = ({ navigation }) => {
     getBarCodeScannerPermissions();
   }, []);
 
-  //텀블러 대여 - 유저 정보(ID, email)와 텀블러 ID
-  const handleBarCodeScanned = ({ data }) => {
+  const handleBarCodeScanned = ({data}) => {
     setScanned(true);
-    alert(`대여 완료${user.email} 데이터 ${data}`);
-    // axios
-    //   .post("http://3.34.19.237:3000/user/signin", {
-        // userID: user?.email,
-    //     tumblerID: data,
-    //   })
-    //   .then((res) => {
-    //     alert(`대여 완료${type} 데이터 ${data}`);
-    //     navigation.navigate('HomeScreen');
-    //   })
-    //   .catch((err) => {
-    //     alert(`대여 완료${type} 데이터 ${data}`);
-    //   });
+    axios
+      .post("http://3.34.19.237:3000/api/rental", {
+        email: user?.email,
+        tumblerId: parseInt(data),
+      })
+      .then((res) => {
+        Alert.alert("대여 완료", "1번 텀블러 대여 완료");
+        navigation.navigate("TumblA");
+      })
+      .catch((err) => {
+         Alert.alert("대여 실패", "대여할 수 없는 텀블러입니다.");
+      });
   };
 
   if (hasPermission === null) {

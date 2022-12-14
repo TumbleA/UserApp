@@ -4,7 +4,6 @@ import MainPageStack from "./MainPageStack";
 import MyPageStack from "./MyPageStack";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { theme } from "./../theme";
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,8 +15,8 @@ const MainTab = () => {
         activeTintColor: theme.active,
         inactiveTintColor: theme.inActive,
         tabBarHideOnKeyboard: true,
+        tabBarShowLabel: false,
       }}
-      tabBarOptions={{ showLabel: false }}
     >
       <Tab.Screen
         options={{

@@ -10,7 +10,7 @@ const MainStack = () => {
       initialRouteName="Main"
       screenOptions={{
         headerTitleAlign: "center",
-        headerShown:false,
+        headerShown: false,
       }}
     >
       <Stack.Screen name="main" component={MainTab} />

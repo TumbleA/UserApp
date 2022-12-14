@@ -19,6 +19,18 @@ const historyList = [
 ];
 
 const HistoryScreen = () => {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    const getHistory = async () => {
+      const data = await axios({
+        method: "GET",
+        url: "http://3.34.19.237:3000/api/payment/add",
+      });
+      setList(res.data);
+    };
+    getHistory();
+  }, []);
   return (
     <ScrollView style={styles.Container}>
       {historyList.map((history) => (
