@@ -23,7 +23,8 @@ const Scan = ({ navigation }) => {
     setScanned(true);
     axios
       .post("http://3.34.19.237:3000/api/rental", {
-        email: user?.email,
+        // email: user?.email,
+        email: "js1234@naver.com",
         tumblerId: parseInt(data),
       })
       .then((res) => {

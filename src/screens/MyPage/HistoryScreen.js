@@ -1,47 +1,40 @@
-import React from "react";
-import { ScrollView, Text, StyleSheet } from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+import { View, ScrollView, Text, StyleSheet } from "react-native";
 import { theme } from "./../../theme";
+import axios from "axios";
+import { UserContext } from "../../contexts";
 import HistoryListItem from "./../../components/HistoryListItem";
-
-const historyList = [
-  {
-    id: 1,
-    cafeName: "중도 카페",
-    rentalDate: "11/26 13:00:00",
-    returnDate: "11/26 17:30:05",
-  },
-  {
-    id: 2,
-    cafeName: "중도 카페",
-    rentalDate: "11/26 13:00:00",
-    returnDate: "11/26 17:30:05",
-  },
-];
+import moment from 'moment';
 
 const HistoryScreen = () => {
-  const [list, setList] = useState([]);
-
+  const [historyList, setHistoryList] = useState([]);
+  const { user } = useContext(UserContext);
   useEffect(() => {
-    const getHistory = async () => {
-      const data = await axios({
-        method: "GET",
-        url: "http://3.34.19.237:3000/api/payment/add",
+    axios
+      .post("http://3.34.19.237:3000/api/rentalhistory", {
+        email: user?.email,
+        // email: "js1234@naver.com",
+      })
+      .then((res) => {
+        setHistoryList(res.data);
+        // alert("A")
+      })
+      .catch((err) => {
+        alert(err);
       });
-      setList(res.data);
-    };
-    getHistory();
   }, []);
+
   return (
-    <ScrollView style={styles.Container}>
-      {historyList.map((history) => (
-        <HistoryListItem
-          key={history.id}
-          cafeName={history.cafeName}
-          rentalDate={history.rentalDate}
-          returnDate={history.returnDate}
-        />
-      ))}
-    </ScrollView>
+      <View style={styles.Container}>
+        {historyList.map((i) => (
+          <HistoryListItem
+            key={i.id}
+            tumblerNum={i.tumblerNum}
+            rentalDate={moment(i.rentalDate).format("YYYY-MM-DD HH:mm:ss")}
+            returnDate={moment(i.dueDate).format("YYYY-MM-DD HH:mm:ss")}
+          />
+        ))}
+      </View>
   );
 };
 

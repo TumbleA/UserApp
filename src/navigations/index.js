@@ -11,9 +11,9 @@ const Navigation = () => {
 
   return (
     <NavigationContainer>
-      {/* {user.email ? <MainStack /> : <AuthStack />}
-      {inProgress && <Spinner />} */}
-      {<MainStack/>}
+      {user.email ? <MainStack /> : <AuthStack />}
+      {inProgress && <Spinner />}
+      {/* {<MainStack/>}  */}
     </NavigationContainer>
   );
 };
